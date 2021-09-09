@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/Link";
+import Link from "next/link";
 import { Squash as Hamburger } from "hamburger-react";
 import styled from "styled-components";
 import { Container } from "../styles/global-css";
