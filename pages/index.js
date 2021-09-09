@@ -704,7 +704,7 @@ export default function Home() {
                   </Link>
                 </ListMenu>
                 <ListMenu>
-                  <Link href="/">
+                  <Link href="/auth/login">
                     <a>Login</a>
                   </Link>
                 </ListMenu>
