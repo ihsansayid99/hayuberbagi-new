@@ -1,0 +1,25 @@
+.pt1{
+    padding-top: 1.5rem;
+}
+.pt2{
+    padding-top: 2rem;
+}
+.pt3{
+    padding-top: 3rem;
+}
+.pt4{
+    padding-top: 4rem;
+}
+.pt5{
+    padding-top: 5rem;
+}
+.pb5{
+    padding-bottom: 5rem;
+}
+.textCenter{
+    text-align: center;
+}
+
+.borRadius2{
+    border-radius: 20px;
+}

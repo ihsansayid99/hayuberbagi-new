@@ -1,6 +1,9 @@
 import styled from "styled-components";
+import Image from "next/image";
+import axios from "axios";
+import styles from './Login.module.css'
+import { GoogleLogin } from "react-google-login";
 import { colors } from "../../styles/colors";
-import Link from "next/link";
 
 const LoginWrapper = styled.div`
   height: 100vh;
@@ -27,7 +30,10 @@ const LoginFormWrapper = styled.div`
 
 const LoginOther = styled.div`
   width: 58.33%;
-  background-color: ${colors.green};
+  background-image: url('/images/login-img.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   @media all and (max-width: 480px) {
     width: 100%;
     display: none;
@@ -47,6 +53,12 @@ const LoginFormTitle = styled.h2`
 const LoginForm = styled.form`
   width: 80%;
   margin: auto;
+  @media all and (max-width: 480px) {
+    width: 100%;
+  }
+  @media all and (min-width: 480px) and (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const LoginFormItem = styled.div`
@@ -133,10 +145,25 @@ const ButtonSocial = styled.a`
 `;
 
 export default function Login() {
+  const responseGoogle = (response) => {
+    console.log(response);
+    axios({
+      method: "POST",
+      url: "http://localhost:5000/api/google-login",
+      data: { tokenId: response.tokenId}
+    }).then(res => {
+      console.log(res)
+    }).catch(err => {
+      console.log(err)
+    })
+  };
   return (
     <>
       <LoginWrapper>
         <LoginFormWrapper>
+          <div className={styles.textCenter}>
+            <Image src="/hayuberbagi-logosmall.png" width={80} height={80} alt="Logo HayuBerbagi" />
+          </div>
           <LoginFormTitle>Halaman Login</LoginFormTitle>
           <LoginForm>
             <LoginFormItem>
@@ -150,13 +177,23 @@ export default function Login() {
             <LoginFormItem>
               <ButtonGreen bigSize>Masuk</ButtonGreen>
               <HRCustom />
-              <Link href="/">
+              {/* <Link href="/">responseGoogle
                 <ButtonSocial bigSize>Login dengan Google</ButtonSocial>
-              </Link>
+              </Link> */}
+              <GoogleLogin
+                clientId="946995429747-4hk90v029dg6f54lovoo0vtftp66qrkt.apps.googleusercontent.com"
+                buttonText="Login"
+                render={renderProps => (
+                  <ButtonSocial bigSize onClick={renderProps.onClick} disabled={renderProps.disabled}>Login dengan Google</ButtonSocial>
+                )}
+                onSuccess={responseGoogle}
+                onFailure={responseGoogle}
+                cookiePolicy={"single_host_origin"}
+              />
             </LoginFormItem>
           </LoginForm>
         </LoginFormWrapper>
-        <LoginOther>aa</LoginOther>
+        <LoginOther />
       </LoginWrapper>
     </>
   );
