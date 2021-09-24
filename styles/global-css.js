@@ -25,6 +25,9 @@ const Container = styled.div`
   @media all and (min-width: 768px) and (max-width: 1024px) {
     padding: 0 4rem;
   }
+  @media only screen and (min-width: 64.063em) and (max-width: 90em) {
+    padding: 0 3rem;
+  }
 `;
 const theme = {
   colors: {

@@ -26,6 +26,9 @@ const LoginFormWrapper = styled.div`
   @media all and (min-width: 480px) and (max-width: 768px) {
     width: 100%;
   }
+  @media only screen and (min-width: 64.063em) and (max-width: 90em) {
+    padding: 2rem 3rem;
+  }
 `;
 
 const LoginOther = styled.div`
